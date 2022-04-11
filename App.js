@@ -16,7 +16,7 @@ export default class App extends Component {
     },
     { 
       nickname: 'Gustavo Ricardo',
-      comment: 'Muito feio. Cerca sem noção'
+      comment: 'Muito feio. Cerca sem noção '
     }
   ]
 
