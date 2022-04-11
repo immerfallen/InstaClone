@@ -1,5 +1,5 @@
 import React, { Component} from 'react'
-import {StyleSheet, View, Text, Dimensions, Alert} from 'react-native'
+import {StyleSheet, View, Text} from 'react-native'
 
 class Comments extends Component { 
     render(){
@@ -37,7 +37,7 @@ const styles = StyleSheet.create({
         color: "#444"
     },
     comment: {
-        colo: "#555"
+        color: "#555"
     }
 })
 
