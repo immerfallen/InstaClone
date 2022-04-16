@@ -5,6 +5,7 @@ import { NavigationContainer } from '@react-navigation/native';
 
 import Feed from './screens/Feed'
 import AddPhoto from './screens/AddPhoto';
+import Profile from './screens/Profile';
 
 const Tabs = createBottomTabNavigator();
 
@@ -34,7 +35,7 @@ function MyTabs(){
             >
                 <Tabs.Screen name='Feed' component={Feed}/>
                 <Tabs.Screen name='Camera' component={AddPhoto}/>
-                <Tabs.Screen name='Profile' component={Feed}/>
+                <Tabs.Screen name='Profile' component={Profile}/>
             </Tabs.Navigator>
         </NavigationContainer>
     )

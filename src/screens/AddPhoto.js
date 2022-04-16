@@ -36,8 +36,7 @@ class AddPhoto extends Component {
                     this.setState({image: {uri: res.assets[0].uri, base64: res.assets[0].base64}})
                    
                 }
-            }) 
-        
+            })        
            
     }
 
