@@ -3,8 +3,7 @@ import { StyleSheet, View, TouchableOpacity, Text } from 'react-native'
 import { Gravatar } from 'react-native-gravatar'
 
 class Profile extends Component {
-    logout = () => {
-        console.log('oi')
+    logout = () => {        
         this.props.navigation.navigate('Auth')
     }
 
