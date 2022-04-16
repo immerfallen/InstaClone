@@ -1,5 +1,5 @@
 import React, { Component} from 'react'
-import {StyleSheet, View, FlatList} from 'react-native'
+import {StyleSheet, View, FlatList, Text} from 'react-native'
 import Header from '../components/Header'
 import Post from '../components/Post'
 
@@ -10,7 +10,7 @@ class Feed extends Component {
             id: Math.random(),
             nickname: "Rafael Pereira",
             email: 'refael@gmail.com',
-            image: require('../../assets/imgs/fence.jpg'), 
+            image: require('../../assets/imgs/bw.jpg'), 
             comments: 
             [
                 {
@@ -35,8 +35,50 @@ class Feed extends Component {
             comments: 
             [
                 {
-                nickname: 'John Ray Sheldon',
-                comment: 'Stunning'
+                nickname: 'Maro',
+                comment: 'Estilo'
+                }, 
+                {
+                    nickname: 'Jana Ana Arrunda',
+                    comment: 'Foto linda, Onde foi tirada?'
+                },
+                {
+                    nickname: 'Bebel Arturia',
+                    comment: 'Loucura Louca'
+                }
+            ], 
+         },
+         {
+            id: Math.random(),
+            nickname: "Rafael Pereira",
+            email: 'refael@gmail.com',
+            image: require('../../assets/imgs/boat.jpg'), 
+            comments: 
+            [
+                {
+                nickname: 'Maro',
+                comment: 'Estilo'
+                }, 
+                {
+                    nickname: 'Jana Ana Arrunda',
+                    comment: 'Foto linda, Onde foi tirada?'
+                },
+                {
+                    nickname: 'Bebel Arturia',
+                    comment: 'Loucura Louca'
+                }
+            ], 
+         },
+         {
+            id: Math.random(),
+            nickname: "Rafael Pereira",
+            email: 'refael@gmail.com',
+            image: require('../../assets/imgs/gate.jpg'), 
+            comments: 
+            [
+                {
+                nickname: 'Maro',
+                comment: 'Estilo'
                 }, 
                 {
                     nickname: 'Jana Ana Arrunda',
@@ -51,15 +93,16 @@ class Feed extends Component {
     }
 
     render(){
-        return (
+        return [
             <View styles={styles.container}>
                 <Header/>
                 <FlatList data={this.state.posts}
                 keyExtractor={item=> `${item.id}`}
                 renderItem={({item})=> 
-                <Post key={item.id} {...item}/>} />
+                <Post key={item.id} {...item}/>} />                
             </View>
-        )
+            
+        ]
     }
 }
 
