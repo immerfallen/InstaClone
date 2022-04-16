@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import {View, Text, PermissionsAndroid, StyleSheet, TouchableOpacity, Image, Dimensions, Platform, ScrollView, Alert, TextInput} from 'react-native'
+import {View, Text, StyleSheet, TouchableOpacity, Image, Dimensions, Platform, ScrollView, Alert, TextInput} from 'react-native'
 
 import {launchCamera, launchImageLibrary} from 'react-native-image-picker'
 
