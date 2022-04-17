@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import {View, Text, StyleSheet, TouchableOpacity, Image, Dimensions, Platform, ScrollView, Alert, TextInput} from 'react-native'
+import {View, Text, StyleSheet, TouchableOpacity, Image, Dimensions, Platform, ScrollView, Alert, TextInput, PermissionsAndroid} from 'react-native'
 
 import {launchCamera, launchImageLibrary} from 'react-native-image-picker'
 
@@ -25,18 +25,61 @@ class AddPhoto extends Component {
         )           
     }
 
-    takePhoto = async () => {       
+    requestCameraPermission = async () => {
+        if (Platform.OS === 'android') {
+          try {
+            const granted = await PermissionsAndroid.request(
+              PermissionsAndroid.PERMISSIONS.CAMERA,
+              {
+                title: 'Camera Permission',
+                message: 'App needs camera permission',
+              },
+            );
+            // If CAMERA Permission is granted
+            return granted === PermissionsAndroid.RESULTS.GRANTED;
+          } catch (err) {
+            console.warn(err);
+            return false;
+          }
+        } else return true;
+      };
+    
+       requestExternalWritePermission = async () => {
+        if (Platform.OS === 'android') {
+          try {
+            const granted = await PermissionsAndroid.request(
+              PermissionsAndroid.PERMISSIONS.WRITE_EXTERNAL_STORAGE,
+              {
+                title: 'External Storage Write Permission',
+                message: 'App needs write permission',
+              },
+            );
+            // If WRITE_EXTERNAL_STORAGE Permission is granted
+            return granted === PermissionsAndroid.RESULTS.GRANTED;
+          } catch (err) {
+            console.warn(err);
+            alert('Write permission err', err);
+          }
+          return false;
+        } else return true;
+      };
+
+    takePhoto = async () => {    
+        let isCameraPermitted = await this.requestCameraPermission();
+        let isStoragePermitted = await this.requestExternalWritePermission();
+        if(isCameraPermitted && isStoragePermitted)   {
             launchCamera({
                 saveToPhotos: true, 
                 maxHeight: 600,
                 maxWidth: 800           
             }, res => {
-                if(!res.didCancel){
-                    console.log(res.assets.uri)
-                    this.setState({image: {uri: res.assets[0].uri, base64: res.assets[0].base64}})
+                if(!res.didCancel){                    
+                    console.log(res)
+                    this.setState({image: {uri: res?.assets[0].uri, base64: res?.assets[0].base64}})
                    
                 }
-            })        
+            })  
+        }      
            
     }
 

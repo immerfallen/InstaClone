@@ -17,9 +17,7 @@ const Tabs = createBottomTabNavigator();
 const Stack = createStackNavigator();
 
 const LoginOrProfileRouter = ()=> 
-<Stack.Navigator initialRouteName='Login' screenOptions={{
-      headerShown: false,      
-    }} >
+<Stack.Navigator initialRouteName='Login'  >
     <Stack.Screen  name='Profile' component={Profile}/>
     <Stack.Screen  name='Auth' component={Login} />
     <Stack.Screen  name='Register' component={Register} />
