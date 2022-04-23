@@ -1,27 +1,31 @@
-import React, { Component} from 'react'
-import {StyleSheet, View, TouchableOpacity, Text, TextInput} from 'react-native'
+import React, { Component } from 'react'
+import { connect } from 'react-redux'
+import { login } from '../store/actions/user'
+import { StyleSheet, View, TouchableOpacity, Text, TextInput } from 'react-native'
 import Header from '../components/Header'
 import Post from '../components/Post'
 
 class Login extends Component {
-    state ={
+    state = {
+        name: 'Temp',
         email: '',
         password: ''
     }
 
-    login = ()=>{
+    login = () => {
+        this.props.onLogin({ ...this.state })
         this.props.navigation.navigate('Profile')
     }
 
-    render(){
+    render() {
         return (
             <View style={styles.container}>
-                <TextInput placeholder='Email' style={styles.input} autoFocus={true} keyboardType='email-address' value={this.state.email} onChangeText={email => this.setState({email})}/>
-                <TextInput placeholder='Senha' style={styles.input} secureTextEntry={true}  value={this.state.password} onChangeText={password => this.setState({password})}/>
+                <TextInput placeholder='Email' style={styles.input} autoFocus={true} keyboardType='email-address' value={this.state.email} onChangeText={email => this.setState({ email })} />
+                <TextInput placeholder='Senha' style={styles.input} secureTextEntry={true} value={this.state.password} onChangeText={password => this.setState({ password })} />
                 <TouchableOpacity onPress={this.login} style={styles.button}>
                     <Text style={styles.buttonText}>Login</Text>
                 </TouchableOpacity>
-                <TouchableOpacity onPress={()=>{this.props.navigation.navigate('Register')}} style={styles.button}>
+                <TouchableOpacity onPress={() => { this.props.navigation.navigate('Register') }} style={styles.button}>
                     <Text style={styles.buttonText}>Criar nova conta...</Text>
                 </TouchableOpacity>
             </View>
@@ -54,4 +58,12 @@ const styles = StyleSheet.create({
     }
 })
 
-export default Login
+const mapDispatchToProps = dispatch => {
+    return {
+        onLogin: user => dispatch(login(user))
+    }
+}
+
+//export default Login
+
+export default connect(null, mapDispatchToProps)(Login)
