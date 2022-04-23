@@ -31,8 +31,8 @@ class AddPhoto extends Component {
             const granted = await PermissionsAndroid.request(
               PermissionsAndroid.PERMISSIONS.CAMERA,
               {
-                title: 'Camera Permission',
-                message: 'App needs camera permission',
+                title: 'Permissão da Câmera',
+                message: 'O aplicativo precisa de paermissão da Câmera.',
               },
             );
             // If CAMERA Permission is granted
@@ -50,8 +50,8 @@ class AddPhoto extends Component {
             const granted = await PermissionsAndroid.request(
               PermissionsAndroid.PERMISSIONS.WRITE_EXTERNAL_STORAGE,
               {
-                title: 'External Storage Write Permission',
-                message: 'App needs write permission',
+                title: 'Permissão para gravar dados',
+                message: 'Aplicativo precisa de permissão para gravar dados.',
               },
             );
             // If WRITE_EXTERNAL_STORAGE Permission is granted
@@ -68,6 +68,7 @@ class AddPhoto extends Component {
         let isCameraPermitted = await this.requestCameraPermission();
         let isStoragePermitted = await this.requestExternalWritePermission();
         if(isCameraPermitted && isStoragePermitted)   {
+            console.log('ola')
             launchCamera({
                 saveToPhotos: true, 
                 maxHeight: 600,
